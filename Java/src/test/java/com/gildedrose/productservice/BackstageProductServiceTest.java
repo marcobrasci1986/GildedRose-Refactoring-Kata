@@ -48,6 +48,16 @@ class BackstageProductServiceTest {
     }
 
     @Test
+    void concertIsLessMore10DaysAway() {
+        Item item = new Item(ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 15, 20);
+
+        backstageProductService.updateItem(item);
+
+        assertThat(item.sellIn).isEqualTo(14);
+        assertThat(item.quality).isEqualTo(21);
+    }
+
+    @Test
     void qualityCannotGoAbove50() {
         Item item = new Item(ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 1, 50);
 

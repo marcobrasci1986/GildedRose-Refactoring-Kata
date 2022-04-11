@@ -11,8 +11,8 @@ public class AgedBrieProductService implements ProductService {
      */
     @Override
     public void updateItem(Item item) {
-        updateSellIn(item);
         increaseQualityByDay(item);
+        updateSellIn(item);
     }
 
 

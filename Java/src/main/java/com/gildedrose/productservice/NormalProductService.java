@@ -11,8 +11,8 @@ public class NormalProductService implements ProductService {
      */
     @Override
     public void updateItem(Item item) {
-        updateSellIn(item);
         decreaseQualityBasedOnSellInDays(item);
+        updateSellIn(item);
         qualityCannotBeNegative(item);
     }
 
