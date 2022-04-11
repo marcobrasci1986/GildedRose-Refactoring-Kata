@@ -4,6 +4,9 @@ import com.gildedrose.Item;
 import com.gildedrose.ProductService;
 import com.gildedrose.ProductType;
 
+/**
+ * TODO Check Aged Brie + Elixer of Goose (Normal product)
+ */
 public class NormalProductService implements ProductService {
 
     /**
