@@ -15,19 +15,30 @@ public class BackstageProductService implements ProductService {
      */
     @Override
     public void updateItem(Item item) {
-        if (item.sellIn <= 0) {
-            item.quality = 0;
-        } else if (item.sellIn <= 5) {
-            item.quality = item.quality + 3;
-        } else if (item.sellIn <= 10) {
-            item.quality = item.quality + 2;
-        } else {
-            item.quality = item.quality + 1;
-        }
-
         updateSellIn(item);
 
+        if (item.sellIn < 0) {
+            // Concert is over. Tickets have no value anymore
+            item.quality = 0;
+        } else {
+            int increaseValue = findIncreaseValue(item);
+            item.quality = item.quality + increaseValue;
+        }
+
         ensureQualityNeverExceeds50(item);
+    }
+
+    /**
+     * How do I decrease Cyclomatic complexity here?
+     */
+    private int findIncreaseValue(Item item) {
+        if (item.sellIn < 5) {
+            return 3;
+        } else if (item.sellIn < 10) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 
     private void ensureQualityNeverExceeds50(Item item) {
