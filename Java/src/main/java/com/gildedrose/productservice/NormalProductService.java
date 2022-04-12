@@ -9,22 +9,29 @@ import com.gildedrose.ProductType;
  */
 public class NormalProductService implements ProductService {
 
+    public static final int DEFAULT_DECREASE_VALUE = 1;
+
     /**
      * Once the sell by date has passed, Quality degrades twice as fast
      */
     @Override
     public void updateItem(Item item) {
-        decreaseQualityBasedOnSellInDays(item);
         updateSellIn(item);
+        decreaseQualityBasedOnSellInDays(item);
         qualityCannotBeNegative(item);
     }
 
 
     private void decreaseQualityBasedOnSellInDays(Item item) {
+        int decreaseValue = findDecreaseValue(item);
+        item.quality = item.quality - decreaseValue;
+    }
+
+    private int findDecreaseValue(Item item) {
         if (item.sellIn >= 0) {
-            item.quality = item.quality - 1;
+            return DEFAULT_DECREASE_VALUE;
         } else {
-            item.quality = item.quality - 2;
+            return DEFAULT_DECREASE_VALUE * 2;
         }
     }
 

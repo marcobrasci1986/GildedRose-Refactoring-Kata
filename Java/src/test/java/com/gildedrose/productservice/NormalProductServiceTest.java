@@ -33,16 +33,27 @@ class NormalProductServiceTest {
         normalProductService.updateItem(item);
 
         assertThat(item.sellIn).isEqualTo(-1);
-        assertThat(item.quality).isEqualTo(9);
+        assertThat(item.quality).isEqualTo(8);
     }
 
     @Test
     void decreaseBy2AfterSellDateHasPassed() {
-        Item item = new Item(ProductConstants.PRODUCT_NORMAL, -1, 10);
+        Item item = new Item(ProductConstants.PRODUCT_NORMAL, 2, 10);
 
         normalProductService.updateItem(item);
+        assertThat(item.sellIn).isEqualTo(1);
+        assertThat(item.quality).isEqualTo(9);
 
-        assertThat(item.sellIn).isEqualTo(-2);
+        normalProductService.updateItem(item);
+        assertThat(item.sellIn).isEqualTo(0);
         assertThat(item.quality).isEqualTo(8);
+
+        normalProductService.updateItem(item);
+        assertThat(item.sellIn).isEqualTo(-1);
+        assertThat(item.quality).isEqualTo(6);
+
+        normalProductService.updateItem(item);
+        assertThat(item.sellIn).isEqualTo(-2);
+        assertThat(item.quality).isEqualTo(4);
     }
 }
