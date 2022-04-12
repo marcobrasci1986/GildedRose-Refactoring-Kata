@@ -13,6 +13,8 @@ public class ProductTypeService {
                 return ProductType.BACKSTAGE_PASS;
             case ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS:
                 return ProductType.SULFURAS;
+            case ProductConstants.PRODUCT_CONJURED_MANA_CAKE:
+                return ProductType.CONJURED;
             default:
                 return ProductType.NORMAL_PRODUCT;
         }
