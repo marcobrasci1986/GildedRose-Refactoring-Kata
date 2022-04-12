@@ -9,7 +9,7 @@ public interface ProductService extends IsProductType {
     /**
      * Since every Product needs to Decrease the SellIn value we can make this a default method.
      */
-    default void updateSellIn(Item item) {
+    default void decreaseSellIn(Item item) {
         item.sellIn = item.sellIn - 1;
     }
 

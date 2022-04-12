@@ -17,7 +17,7 @@ public class BackstageProductService implements ProductService {
     public void updateItem(Item item) {
 //        System.out.println("---------------------");
 //        System.out.println("SellIn before any update: " + item.sellIn);
-        updateSellIn(item);
+        decreaseSellIn(item);
 
         if (item.sellIn < 0) {
             // Concert is over. Tickets have no value anymore

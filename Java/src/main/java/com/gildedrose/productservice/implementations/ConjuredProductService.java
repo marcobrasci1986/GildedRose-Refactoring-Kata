@@ -19,7 +19,7 @@ public class ConjuredProductService implements ProductService, EnsureQualityIsNo
      */
     @Override
     public void updateItem(Item item) {
-        updateSellIn(item);
+        decreaseSellIn(item);
         decreaseQualityBasedOnSellInDays(item);
         ensureQualityIsNeverNegative(item);
     }
