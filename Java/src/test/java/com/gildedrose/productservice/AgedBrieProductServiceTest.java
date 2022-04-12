@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AgedBrieProductServiceTest {
+class AgedBrieProductServiceTest extends AbstractProductServiceTest {
 
     private AgedBrieProductService agedBrieProductService;
 
@@ -18,39 +18,32 @@ class AgedBrieProductServiceTest {
 
     @Test
     void qualityIncreaseByDay() {
-        Item item = new Item(ProductConstants.PRODUCT_AGED_BRIE, 1, 20);
+        Item item = new Item(ProductConstants.PRODUCT_AGED_BRIE, 5, 20);
 
-        agedBrieProductService.updateItem(item);
-
-        assertThat(item.sellIn).isEqualTo(0);
-        assertThat(item.quality).isEqualTo(21);
+        advanceDay(agedBrieProductService, item, 4, 21);
+        advanceDay(agedBrieProductService, item, 3, 22);
+        advanceDay(agedBrieProductService, item, 2, 23);
     }
 
     @Test
     void qualityCannotExceed50() {
-        Item item = new Item(ProductConstants.PRODUCT_AGED_BRIE, 1, 50);
+        Item item = new Item(ProductConstants.PRODUCT_AGED_BRIE, 1, 49);
 
-        agedBrieProductService.updateItem(item);
-
-        assertThat(item.sellIn).isEqualTo(0);
-        assertThat(item.quality).isEqualTo(50);
+        advanceDay(agedBrieProductService, item, 0, 50);
+        advanceDay(agedBrieProductService, item, -1, 50);
+        advanceDay(agedBrieProductService, item, -2, 50);
+        advanceDay(agedBrieProductService, item, -3, 50);
     }
 
     @Test
     void qualityIncreaseByDoubleAmountAfterSellInDaysExpired() {
         Item item = new Item(ProductConstants.PRODUCT_AGED_BRIE, 2, 0);
 
-        agedBrieProductService.updateItem(item);
-        assertThat(item.sellIn).isEqualTo(1);
-        assertThat(item.quality).isEqualTo(1);
+        advanceDay(agedBrieProductService, item, 1, 1);
+        advanceDay(agedBrieProductService, item, 0, 2);
 
-        agedBrieProductService.updateItem(item);
-        assertThat(item.sellIn).isEqualTo(0);
-        assertThat(item.quality).isEqualTo(2);
-
-        agedBrieProductService.updateItem(item);
-        assertThat(item.sellIn).isEqualTo(-1);
-        assertThat(item.quality).isEqualTo(4);
+        advanceDay(agedBrieProductService, item, -1, 4);
+        advanceDay(agedBrieProductService, item, -2, 6);
     }
 
     @Test
