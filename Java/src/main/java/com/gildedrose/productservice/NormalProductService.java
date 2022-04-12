@@ -10,6 +10,7 @@ public class NormalProductService implements ProductService {
 
     /**
      * Once the sell by date has passed, Quality degrades twice as fast
+     * No need to check Quality > 50 as the values can only go down
      */
     @Override
     public void updateItem(Item item) {
