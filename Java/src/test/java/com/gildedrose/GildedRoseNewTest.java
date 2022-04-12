@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.productservice.ServiceFactory;
+import com.gildedrose.service.ProductTypeService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -7,6 +10,15 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GildedRoseNewTest {
+
+    private ServiceFactory serviceFactory;
+    private ProductTypeService productTypeService;
+
+    @BeforeEach
+    void setUp() {
+        serviceFactory = new ServiceFactory();
+        productTypeService = new ProductTypeService();
+    }
 
     /**
      * Once the sell by date has passed, Quality degrades twice as fast
@@ -16,7 +28,7 @@ class GildedRoseNewTest {
     void qualityDegradesTwiceAsFastWhenSellByDateHasPassed() {
         String NORMAL_PRODUCT = "normal product";
         Item normalProduct = new Item(NORMAL_PRODUCT, 1, 3);
-        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct));
+        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct), serviceFactory, productTypeService);
 
         // Initial state
         Item itemDay0 = ItemUtil.findItem(NORMAL_PRODUCT, app.getItems());
@@ -51,7 +63,7 @@ class GildedRoseNewTest {
     @Test
     void agedBrieIncreaseQualityWhenItGetsOlder() {
         Item normalProduct = new Item(ProductConstants.PRODUCT_AGED_BRIE, 10, 48);
-        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct));
+        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct), serviceFactory, productTypeService);
 
         // Initial state
         Item itemDay0 = ItemUtil.findItem(ProductConstants.PRODUCT_AGED_BRIE, app.getItems());
@@ -80,7 +92,7 @@ class GildedRoseNewTest {
     @Test
     void sulfurasNeverHasToBeSoldOrDecreasedInValue() {
         Item normalProduct = new Item(ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 10, 10);
-        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct));
+        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct), serviceFactory, productTypeService);
 
         // Initial state
         Item itemDay0 = ItemUtil.findItem(ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, app.getItems());
@@ -103,7 +115,7 @@ class GildedRoseNewTest {
     @Test
     void backStagePas() {
         Item normalProduct = new Item(ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 10, 10);
-        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct));
+        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct), serviceFactory, productTypeService);
 
         // Initial state
         Item itemDay0 = ItemUtil.findItem(ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, app.getItems());

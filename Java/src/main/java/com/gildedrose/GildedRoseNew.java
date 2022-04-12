@@ -1,48 +1,35 @@
 package com.gildedrose;
 
 import com.gildedrose.productservice.ServiceFactory;
+import com.gildedrose.service.ProductTypeService;
 
 import java.util.List;
 
 
-class GildedRoseNew {
-    public static final String PRODUCT_AGED_BRIE = "Aged Brie";
-    public static final String PRODUCT_BACKSTAGE_PASSES_TO_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
-    public static final String PRODUCT_SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
-    List<Item> items;
+public class GildedRoseNew {
+    private final List<Item> items;
 
     private final ServiceFactory serviceFactory;
+    private final ProductTypeService productTypeService;
 
-    public GildedRoseNew(List<Item> items) {
+    public GildedRoseNew(
+        List<Item> items,
+        ServiceFactory serviceFactory,
+        ProductTypeService productTypeService
+    ) {
         this.items = items;
-        this.serviceFactory = new ServiceFactory();
+        this.serviceFactory = serviceFactory;
+        this.productTypeService = productTypeService;
     }
 
     public void updateQuality() {
         for (Item item : items) {
-            ProductType productType = findProductType(item.name);
+            ProductType productType = productTypeService.findProductType(item.name);
             ProductService service = serviceFactory.findService(productType);
 
             service.updateItem(item);
-
         }
     }
-
-    private ProductType findProductType(String name) {
-
-        switch (name) {
-            case PRODUCT_AGED_BRIE:
-                return ProductType.AGED_BRIE;
-            case PRODUCT_BACKSTAGE_PASSES_TO_CONCERT:
-                return ProductType.BACKSTAGE_PASS;
-            case PRODUCT_SULFURAS_HAND_OF_RAGNAROS:
-                return ProductType.SULFURAS;
-            default:
-                return ProductType.NORMAL_PRODUCT;
-        }
-
-    }
-
 
     public List<Item> getItems() {
         return items;
