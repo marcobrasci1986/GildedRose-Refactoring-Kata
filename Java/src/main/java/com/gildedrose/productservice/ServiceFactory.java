@@ -1,8 +1,5 @@
 package com.gildedrose.productservice;
 
-import com.gildedrose.ProductService;
-import com.gildedrose.ProductType;
-
 import java.util.EnumMap;
 import java.util.Map;
 

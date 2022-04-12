@@ -2,7 +2,6 @@ package com.gildedrose.productservice;
 
 import com.gildedrose.Item;
 import com.gildedrose.ProductConstants;
-import com.gildedrose.ProductType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -126,6 +125,6 @@ class BackstageProductServiceTest {
 
     @Test
     void findProductType() {
-        assertThat(backstageProductService.forProductType()).isEqualTo(ProductType.BACKSTAGE_PASS);
+        assertThat(backstageProductService.findProductType()).isEqualTo(ProductType.BACKSTAGE_PASS);
     }
 }

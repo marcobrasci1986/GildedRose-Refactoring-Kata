@@ -1,8 +1,6 @@
 package com.gildedrose.productservice;
 
 import com.gildedrose.Item;
-import com.gildedrose.ProductService;
-import com.gildedrose.ProductType;
 
 public class AgedBrieProductService implements ProductService {
 
@@ -40,7 +38,7 @@ public class AgedBrieProductService implements ProductService {
     }
 
     @Override
-    public ProductType forProductType() {
+    public ProductType findProductType() {
         return ProductType.AGED_BRIE;
     }
 }

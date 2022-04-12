@@ -1,8 +1,6 @@
 package com.gildedrose.productservice;
 
 import com.gildedrose.Item;
-import com.gildedrose.ProductService;
-import com.gildedrose.ProductType;
 
 public class BackstageProductService implements ProductService {
 
@@ -60,7 +58,7 @@ public class BackstageProductService implements ProductService {
     }
 
     @Override
-    public ProductType forProductType() {
+    public ProductType findProductType() {
         return ProductType.BACKSTAGE_PASS;
     }
 }

@@ -2,7 +2,6 @@ package com.gildedrose.productservice;
 
 import com.gildedrose.Item;
 import com.gildedrose.ProductConstants;
-import com.gildedrose.ProductType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +55,6 @@ class AgedBrieProductServiceTest {
 
     @Test
     void findProductType() {
-        assertThat(agedBrieProductService.forProductType()).isEqualTo(ProductType.AGED_BRIE);
+        assertThat(agedBrieProductService.findProductType()).isEqualTo(ProductType.AGED_BRIE);
     }
 }

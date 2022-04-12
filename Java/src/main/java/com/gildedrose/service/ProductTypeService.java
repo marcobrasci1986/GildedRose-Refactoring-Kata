@@ -1,7 +1,7 @@
 package com.gildedrose.service;
 
 import com.gildedrose.ProductConstants;
-import com.gildedrose.ProductType;
+import com.gildedrose.productservice.ProductType;
 
 public class ProductTypeService {
 

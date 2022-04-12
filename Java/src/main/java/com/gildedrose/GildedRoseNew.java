@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.productservice.ProductService;
+import com.gildedrose.productservice.ProductType;
 import com.gildedrose.productservice.ServiceFactory;
 import com.gildedrose.service.ProductTypeService;
 

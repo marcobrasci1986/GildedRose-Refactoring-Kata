@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NormalProductServiceTest {
+class NormalProductServiceTest extends AbstractProductServiceTest {
 
     private NormalProductService normalProductService;
 
@@ -20,40 +20,33 @@ class NormalProductServiceTest {
     void normalSituation() {
         Item item = new Item(ProductConstants.PRODUCT_NORMAL, 10, 10);
 
-        normalProductService.updateItem(item);
-
-        assertThat(item.sellIn).isEqualTo(9);
-        assertThat(item.quality).isEqualTo(9);
+        advanceDay(normalProductService, item, 9, 9);
+        advanceDay(normalProductService, item, 8, 8);
+        advanceDay(normalProductService, item, 7, 7);
     }
 
     @Test
-    void decreaseBy1OnLastDay() {
+    void qualityDegradesTwiceAsFastPassedSellByDate() {
         Item item = new Item(ProductConstants.PRODUCT_NORMAL, 0, 10);
 
-        normalProductService.updateItem(item);
-
-        assertThat(item.sellIn).isEqualTo(-1);
-        assertThat(item.quality).isEqualTo(8);
+        advanceDay(normalProductService, item, -1, 8);
+        advanceDay(normalProductService, item, -2, 6);
+        advanceDay(normalProductService, item, -3, 4);
     }
 
     @Test
-    void decreaseBy2AfterSellDateHasPassed() {
-        Item item = new Item(ProductConstants.PRODUCT_NORMAL, 2, 10);
+    void qualityCannotBecomeNegative() {
+        Item item = new Item(ProductConstants.PRODUCT_NORMAL, 1, 4);
 
-        normalProductService.updateItem(item);
-        assertThat(item.sellIn).isEqualTo(1);
-        assertThat(item.quality).isEqualTo(9);
+        advanceDay(normalProductService, item, 0, 3);
+        advanceDay(normalProductService, item, -1, 1);
+        advanceDay(normalProductService, item, -2, 0);
+        advanceDay(normalProductService, item, -3, 0);
+        advanceDay(normalProductService, item, -4, 0);
+    }
 
-        normalProductService.updateItem(item);
-        assertThat(item.sellIn).isEqualTo(0);
-        assertThat(item.quality).isEqualTo(8);
-
-        normalProductService.updateItem(item);
-        assertThat(item.sellIn).isEqualTo(-1);
-        assertThat(item.quality).isEqualTo(6);
-
-        normalProductService.updateItem(item);
-        assertThat(item.sellIn).isEqualTo(-2);
-        assertThat(item.quality).isEqualTo(4);
+    @Test
+    void productType() {
+        assertThat(normalProductService.findProductType()).isEqualTo(ProductType.NORMAL_PRODUCT);
     }
 }

@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.productservice;
 
 public enum ProductType {
     AGED_BRIE,

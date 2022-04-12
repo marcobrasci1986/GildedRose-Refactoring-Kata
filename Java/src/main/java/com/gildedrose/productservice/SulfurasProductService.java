@@ -1,8 +1,6 @@
 package com.gildedrose.productservice;
 
 import com.gildedrose.Item;
-import com.gildedrose.ProductService;
-import com.gildedrose.ProductType;
 
 public class SulfurasProductService implements ProductService {
 
@@ -17,7 +15,7 @@ public class SulfurasProductService implements ProductService {
     }
 
     @Override
-    public ProductType forProductType() {
+    public ProductType findProductType() {
         return ProductType.SULFURAS;
     }
 }

@@ -1,6 +1,5 @@
 package com.gildedrose.productservice;
 
-import com.gildedrose.ProductType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +16,6 @@ class SulfurasProductServiceTest {
 
     @Test
     void findProductType() {
-        assertThat(sulfurasProductService.forProductType()).isEqualTo(ProductType.SULFURAS);
+        assertThat(sulfurasProductService.findProductType()).isEqualTo(ProductType.SULFURAS);
     }
 }

@@ -9,6 +9,5 @@ public class ItemUtil {
             .filter(item -> item.name.equals(name))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException(String.format("Product %s was not found", name)));
-
     }
 }
