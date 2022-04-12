@@ -27,12 +27,11 @@ public class GildedRoseNew {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
+        items.forEach(item -> {
             ProductType productType = productTypeService.findProductType(item.name);
             ProductService service = serviceFactory.findService(productType);
-
             service.updateItem(item);
-        }
+        });
     }
 
     public List<Item> getItems() {

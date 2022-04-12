@@ -15,21 +15,29 @@ public class BackstageProductService implements ProductService {
      */
     @Override
     public void updateItem(Item item) {
+//        System.out.println("---------------------");
+//        System.out.println("SellIn before any update: " + item.sellIn);
         updateSellIn(item);
 
         if (item.sellIn < 0) {
             // Concert is over. Tickets have no value anymore
             item.quality = 0;
+//            System.out.println("Concert is over: Quality is 0");
         } else {
             int increaseValue = findIncreaseValue(item);
             item.quality = item.quality + increaseValue;
+//            System.out.println("Quality inceased by: " + increaseValue);
         }
+
 
         ensureQualityNeverExceeds50(item);
     }
 
     /**
      * How do I decrease Cyclomatic complexity here?
+     * <p>
+     * We use < 5 (and not <= 5) because the sellInValue is already been decreased in value at this point
+     * We use < 10 (and not <= 10) because the sellInValue is already been decreased in value at this point
      */
     private int findIncreaseValue(Item item) {
         if (item.sellIn < 5) {

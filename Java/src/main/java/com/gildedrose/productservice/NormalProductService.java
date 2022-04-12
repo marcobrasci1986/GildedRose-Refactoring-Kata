@@ -11,12 +11,13 @@ public class NormalProductService implements ProductService {
     /**
      * Once the sell by date has passed, Quality degrades twice as fast
      * No need to check Quality > 50 as the values can only go down
+     * Quality cannot be negative
      */
     @Override
     public void updateItem(Item item) {
         updateSellIn(item);
         decreaseQualityBasedOnSellInDays(item);
-        qualityCannotBeNegative(item);
+        ensureQualityIsNeverNegative(item);
     }
 
 
@@ -33,10 +34,7 @@ public class NormalProductService implements ProductService {
         }
     }
 
-    /**
-     * The Quality of an item is never negative
-     */
-    private void qualityCannotBeNegative(Item item) {
+    private void ensureQualityIsNeverNegative(Item item) {
         if (item.quality < 0) {
             item.quality = 0;
         }

@@ -10,6 +10,7 @@ public class AgedBrieProductService implements ProductService {
 
     /**
      * "Aged Brie" actually increases in Quality the older it gets
+     * The Quality of an item is never more than 50
      */
     @Override
     public void updateItem(Item item) {
