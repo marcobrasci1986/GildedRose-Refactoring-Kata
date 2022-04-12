@@ -1,8 +1,9 @@
 package com.gildedrose.productservice;
 
+import com.gildedrose.EnsureQualityIsNotNegative;
 import com.gildedrose.Item;
 
-public class ConjuredProductService implements ProductService {
+public class ConjuredProductService implements ProductService, EnsureQualityIsNotNegative {
 
     /**
      * Quality twice as fast as normal items
@@ -10,7 +11,7 @@ public class ConjuredProductService implements ProductService {
     public static final int DEFAULT_DECREASE_VALUE = (NormalProductService.DEFAULT_DECREASE_VALUE * 2);
 
     /**
-     * Quality twice as fast as normal items
+     * Quality twice as fast as normal items (sellInDate >= 0  = -2, sellInDate < 0  = -4)
      * No need to check Quality > 50 as the values can only go down
      * Quality cannot be negative
      */
@@ -33,16 +34,6 @@ public class ConjuredProductService implements ProductService {
         } else {
             return DEFAULT_DECREASE_VALUE * 2;
         }
-    }
-
-    private void ensureQualityIsNeverNegative(Item item) {
-        if (item.quality < 0) {
-            item.quality = 0;
-        }
-    }
-
-    private void updateSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
     }
 
     @Override

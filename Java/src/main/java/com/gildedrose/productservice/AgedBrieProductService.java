@@ -32,11 +32,6 @@ public class AgedBrieProductService implements ProductService {
         }
     }
 
-
-    private void updateSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
-
     @Override
     public ProductType findProductType() {
         return ProductType.AGED_BRIE;

@@ -95,6 +95,21 @@ class GildedRoseNewIntegrationTest {
         advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, -1, 0);
     }
 
+    @Test
+    void conjuredItem() {
+        Item conjuredManaCake = new Item(ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 2, 10);
+        GildedRoseNew app = new GildedRoseNew(List.of(conjuredManaCake), serviceFactory, productTypeService);
+
+        // Initial state
+        checkState(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 2, 10);
+
+        // days countdown
+        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 1, 8);
+        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 0, 6);
+        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, -1, 2);
+        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, -2, 0);
+    }
+
     private void checkState(GildedRoseNew app, String name, int expectedSellIn, int expectedQuality) {
         Item item = ItemUtil.findItem(name, app.getItems());
         assertThat(item.sellIn).isEqualTo(expectedSellIn);

@@ -1,8 +1,9 @@
 package com.gildedrose.productservice;
 
+import com.gildedrose.EnsureQualityIsNotNegative;
 import com.gildedrose.Item;
 
-public class NormalProductService implements ProductService {
+public class NormalProductService implements ProductService, EnsureQualityIsNotNegative {
 
     public static final int DEFAULT_DECREASE_VALUE = 1;
 
@@ -32,15 +33,6 @@ public class NormalProductService implements ProductService {
         }
     }
 
-    private void ensureQualityIsNeverNegative(Item item) {
-        if (item.quality < 0) {
-            item.quality = 0;
-        }
-    }
-
-    private void updateSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
 
     @Override
     public ProductType findProductType() {
