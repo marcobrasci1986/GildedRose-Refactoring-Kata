@@ -38,6 +38,23 @@ class AgedBrieProductServiceTest {
     }
 
     @Test
+    void qualityIncreaseByDoubleAmountAfterSellInDaysExpired() {
+        Item item = new Item(ProductConstants.PRODUCT_AGED_BRIE, 2, 0);
+
+        agedBrieProductService.updateItem(item);
+        assertThat(item.sellIn).isEqualTo(1);
+        assertThat(item.quality).isEqualTo(1);
+
+        agedBrieProductService.updateItem(item);
+        assertThat(item.sellIn).isEqualTo(0);
+        assertThat(item.quality).isEqualTo(2);
+
+        agedBrieProductService.updateItem(item);
+        assertThat(item.sellIn).isEqualTo(-1);
+        assertThat(item.quality).isEqualTo(4);
+    }
+
+    @Test
     void findProductType() {
         assertThat(agedBrieProductService.forProductType()).isEqualTo(ProductType.AGED_BRIE);
     }

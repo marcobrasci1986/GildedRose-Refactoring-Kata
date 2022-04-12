@@ -6,19 +6,30 @@ import com.gildedrose.ProductType;
 
 public class AgedBrieProductService implements ProductService {
 
+    public static final int DEFAULT_INCREASE_VALUE = 1;
+
     /**
      * "Aged Brie" actually increases in Quality the older it gets
      */
     @Override
     public void updateItem(Item item) {
-        increaseQualityByDay(item);
         updateSellIn(item);
+        increaseQualityByDay(item);
     }
 
 
     private void increaseQualityByDay(Item item) {
         if (item.quality < 50) {
-            item.quality = item.quality + 1;
+            int increaseValue = findIncreaseValue(item);
+            item.quality = item.quality + increaseValue;
+        }
+    }
+
+    private int findIncreaseValue(Item item) {
+        if (item.sellIn >= 0) {
+            return DEFAULT_INCREASE_VALUE;
+        } else {
+            return DEFAULT_INCREASE_VALUE * 2;
         }
     }
 
