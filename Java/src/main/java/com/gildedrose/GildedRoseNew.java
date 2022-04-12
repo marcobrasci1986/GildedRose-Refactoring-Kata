@@ -5,7 +5,11 @@ import com.gildedrose.service.ProductTypeService;
 
 import java.util.List;
 
-
+/**
+ * Check all strategies
+ * Integration Test
+ * Add Conjured Strategy
+ */
 public class GildedRoseNew {
     private final List<Item> items;
 
