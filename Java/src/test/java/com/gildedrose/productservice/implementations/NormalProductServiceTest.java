@@ -1,7 +1,10 @@
-package com.gildedrose.productservice;
+package com.gildedrose.productservice.implementations;
 
 import com.gildedrose.Item;
 import com.gildedrose.ProductConstants;
+import com.gildedrose.productservice.AbstractProductServiceTest;
+import com.gildedrose.productservice.ProductType;
+import com.gildedrose.productservice.implementations.NormalProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

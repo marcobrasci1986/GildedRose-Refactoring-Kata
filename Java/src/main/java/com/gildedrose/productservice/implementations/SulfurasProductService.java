@@ -1,6 +1,8 @@
-package com.gildedrose.productservice;
+package com.gildedrose.productservice.implementations;
 
 import com.gildedrose.Item;
+import com.gildedrose.productservice.ProductService;
+import com.gildedrose.productservice.ProductType;
 
 public class SulfurasProductService implements ProductService {
 

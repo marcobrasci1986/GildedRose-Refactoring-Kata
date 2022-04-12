@@ -1,7 +1,9 @@
-package com.gildedrose.productservice;
+package com.gildedrose.productservice.implementations;
 
 import com.gildedrose.EnsureQualityIsNotNegative;
 import com.gildedrose.Item;
+import com.gildedrose.productservice.ProductService;
+import com.gildedrose.productservice.ProductType;
 
 public class NormalProductService implements ProductService, EnsureQualityIsNotNegative {
 

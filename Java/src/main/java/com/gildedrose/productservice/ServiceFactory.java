@@ -1,5 +1,7 @@
 package com.gildedrose.productservice;
 
+import com.gildedrose.productservice.implementations.*;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -7,6 +9,10 @@ public class ServiceFactory {
 
     private final Map<ProductType, ProductService> serviceMap;
 
+    /**
+     * With Spring we would use DI to inject all implementations of ProductService in a List.
+     * We can then loop over the implementation and add it to the map
+     */
     public ServiceFactory() {
         serviceMap = new EnumMap<>(ProductType.class);
         this.serviceMap.put(ProductType.NORMAL_PRODUCT, new NormalProductService());
