@@ -2,8 +2,16 @@ package com.gildedrose.productservice;
 
 import com.gildedrose.Item;
 
+/**
+ * Interface for the Strategy Design Pattern. All implementations need to implement this interface.
+ */
 public interface ProductService extends IsProductType {
 
+    /**
+     * Implement the specific way an item must be updated.
+     *
+     * @param item to update
+     */
     void updateItem(Item item);
 
     /**

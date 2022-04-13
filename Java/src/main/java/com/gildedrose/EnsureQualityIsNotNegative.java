@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 /**
- * Not every Product needs this functionality. With this interface we can pick and choose for whoever needs it.
+ * Not every Product needs this functionality. With this interface we can pick and choose.
  */
 public interface EnsureQualityIsNotNegative {
 

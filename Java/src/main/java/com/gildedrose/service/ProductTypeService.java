@@ -7,7 +7,7 @@ public class ProductTypeService {
 
     /**
      * Logic can be added here at will. As long as you are able to find a ProductType based on the name.
-     * For now I just mapped the names 1 on 1 with a ProductType
+     * For now, I just mapped the names 1 on 1 with a ProductType
      */
     public ProductType findProductType(String name) {
         switch (name) {

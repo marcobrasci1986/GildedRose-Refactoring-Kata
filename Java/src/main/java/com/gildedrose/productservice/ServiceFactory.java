@@ -5,6 +5,9 @@ import com.gildedrose.productservice.implementations.*;
 import java.util.EnumMap;
 import java.util.Map;
 
+/**
+ * Factory to find the specific implementation based on the productType
+ */
 public class ServiceFactory {
 
     private final Map<ProductType, ProductService> serviceMap;
