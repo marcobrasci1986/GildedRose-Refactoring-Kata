@@ -10,25 +10,18 @@ public class BackstageProductService implements ProductService {
      * "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
      * Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
      * Quality drops to 0 after the concert
-     *
-     * @param item
      */
     @Override
     public void updateItem(Item item) {
-//        System.out.println("---------------------");
-//        System.out.println("SellIn before any update: " + item.sellIn);
         decreaseSellIn(item);
 
         if (item.sellIn < 0) {
             // Concert is over. Tickets have no value anymore
             item.quality = 0;
-//            System.out.println("Concert is over: Quality is 0");
         } else {
             int increaseValue = findIncreaseValue(item);
             item.quality = item.quality + increaseValue;
-//            System.out.println("Quality inceased by: " + increaseValue);
         }
-
 
         ensureQualityNeverExceeds50(item);
     }

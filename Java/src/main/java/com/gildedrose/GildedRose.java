@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+/**
+ * I left this class here just for reference. See {@link GildedRoseNew} for the solution.
+ */
 @Deprecated
 class GildedRose {
     Item[] items;
