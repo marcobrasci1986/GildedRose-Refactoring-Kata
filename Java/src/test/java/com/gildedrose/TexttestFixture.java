@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.productservice.ServiceFactory;
+import com.gildedrose.productservice.ProductServiceFactory;
 import com.gildedrose.service.ProductTypeService;
 
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class TexttestFixture {
             new Item("Conjured Mana Cake", 3, 6)
         };
 
-        GildedRoseNew app = new GildedRoseNew(Arrays.asList(items), new ServiceFactory(), new ProductTypeService());
+        GildedRoseNew app = new GildedRoseNew(Arrays.asList(items), new ProductServiceFactory(), new ProductTypeService());
 
         int days = 2;
         if (args.length > 0) {

@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.productservice.ServiceFactory;
+import com.gildedrose.productservice.ProductServiceFactory;
 import com.gildedrose.service.ProductTypeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GildedRoseNewIntegrationTest {
 
-    private ServiceFactory serviceFactory;
+    private ProductServiceFactory productServiceFactory;
     private ProductTypeService productTypeService;
 
     @BeforeEach
     void setUp() {
-        serviceFactory = new ServiceFactory();
+        productServiceFactory = new ProductServiceFactory();
         productTypeService = new ProductTypeService();
     }
 
@@ -24,7 +24,7 @@ class GildedRoseNewIntegrationTest {
     void normalProductCountdown() {
         final String NORMAL_PRODUCT = "normal product";
         Item normalProduct = new Item(NORMAL_PRODUCT, 2, 20);
-        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct), serviceFactory, productTypeService);
+        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct), productServiceFactory, productTypeService);
 
         // Initial state
         checkState(app, NORMAL_PRODUCT, 2, 20);
@@ -39,7 +39,7 @@ class GildedRoseNewIntegrationTest {
     @Test
     void sulfurasProductCountdown() {
         Item sulfuras = new Item(ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 2, 80);
-        GildedRoseNew app = new GildedRoseNew(List.of(sulfuras), serviceFactory, productTypeService);
+        GildedRoseNew app = new GildedRoseNew(List.of(sulfuras), productServiceFactory, productTypeService);
 
         // Initial state
         checkState(app, ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 2, 80);
@@ -53,7 +53,7 @@ class GildedRoseNewIntegrationTest {
     @Test
     void agedBrie() {
         Item agedBrie = new Item(ProductConstants.PRODUCT_AGED_BRIE, 2, 0);
-        GildedRoseNew app = new GildedRoseNew(List.of(agedBrie), serviceFactory, productTypeService);
+        GildedRoseNew app = new GildedRoseNew(List.of(agedBrie), productServiceFactory, productTypeService);
 
         // Initial state
         checkState(app, ProductConstants.PRODUCT_AGED_BRIE, 2, 0);
@@ -68,7 +68,7 @@ class GildedRoseNewIntegrationTest {
     @Test
     void backStagePasses() {
         Item agedBrie = new Item(ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 15, 20);
-        GildedRoseNew app = new GildedRoseNew(List.of(agedBrie), serviceFactory, productTypeService);
+        GildedRoseNew app = new GildedRoseNew(List.of(agedBrie), productServiceFactory, productTypeService);
 
         // Initial state
         checkState(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 15, 20);
@@ -98,7 +98,7 @@ class GildedRoseNewIntegrationTest {
     @Test
     void conjuredItem() {
         Item conjuredManaCake = new Item(ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 2, 10);
-        GildedRoseNew app = new GildedRoseNew(List.of(conjuredManaCake), serviceFactory, productTypeService);
+        GildedRoseNew app = new GildedRoseNew(List.of(conjuredManaCake), productServiceFactory, productTypeService);
 
         // Initial state
         checkState(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 2, 10);
