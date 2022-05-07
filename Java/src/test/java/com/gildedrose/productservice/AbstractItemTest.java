@@ -1,13 +1,13 @@
 package com.gildedrose.productservice;
 
-import com.gildedrose.Item;
+import com.gildedrose.model.Item;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AbstractProductServiceTest {
+public abstract class AbstractItemTest {
 
-    protected void advanceDay(ProductService productService, Item item, int expectedSellIn, int expectedQuality) {
-        productService.updateItem(item);
+    protected void advanceDay(Item item, int expectedSellIn, int expectedQuality) {
+        item.updateQuality();
         assertThat(item.sellIn).isEqualTo(expectedSellIn);
         assertThat(item.quality).isEqualTo(expectedQuality);
     }

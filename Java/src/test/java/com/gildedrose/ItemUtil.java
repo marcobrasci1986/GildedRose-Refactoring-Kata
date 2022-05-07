@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.model.Item;
+
 import java.util.List;
 
 public class ItemUtil {

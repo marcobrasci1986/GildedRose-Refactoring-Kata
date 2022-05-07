@@ -1,8 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.productservice.ProductServiceFactory;
-import com.gildedrose.service.ProductTypeService;
-import org.junit.jupiter.api.BeforeEach;
+import com.gildedrose.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,20 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GildedRoseNewIntegrationTest {
 
-    private ProductServiceFactory productServiceFactory;
-    private ProductTypeService productTypeService;
-
-    @BeforeEach
-    void setUp() {
-        productServiceFactory = new ProductServiceFactory();
-        productTypeService = new ProductTypeService();
-    }
-
     @Test
     void normalProductCountdown() {
         final String NORMAL_PRODUCT = "normal product";
-        Item normalProduct = new Item(NORMAL_PRODUCT, 2, 20);
-        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct), productServiceFactory, productTypeService);
+        Item normalProduct = new NormalItem(NORMAL_PRODUCT, 2, 20);
+        GildedRoseNew app = new GildedRoseNew(List.of(normalProduct));
 
         // Initial state
         checkState(app, NORMAL_PRODUCT, 2, 20);
@@ -38,76 +27,76 @@ class GildedRoseNewIntegrationTest {
 
     @Test
     void sulfurasProductCountdown() {
-        Item sulfuras = new Item(ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 2, 80);
-        GildedRoseNew app = new GildedRoseNew(List.of(sulfuras), productServiceFactory, productTypeService);
+        Item sulfuras = new SulfurasItem(2, 80);
+        GildedRoseNew app = new GildedRoseNew(List.of(sulfuras));
 
         // Initial state
-        checkState(app, ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 2, 80);
+        checkState(app, SulfurasItem.NAME, 2, 80);
 
         // days countdown
-        advanceDay(app, ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 2, 80);
-        advanceDay(app, ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 2, 80);
-        advanceDay(app, ProductConstants.PRODUCT_SULFURAS_HAND_OF_RAGNAROS, 2, 80);
+        advanceDay(app, SulfurasItem.NAME, 2, 80);
+        advanceDay(app, SulfurasItem.NAME, 2, 80);
+        advanceDay(app, SulfurasItem.NAME, 2, 80);
     }
 
     @Test
     void agedBrie() {
-        Item agedBrie = new Item(ProductConstants.PRODUCT_AGED_BRIE, 2, 0);
-        GildedRoseNew app = new GildedRoseNew(List.of(agedBrie), productServiceFactory, productTypeService);
+        Item agedBrie = new AgedBrieItem(2, 0);
+        GildedRoseNew app = new GildedRoseNew(List.of(agedBrie));
 
         // Initial state
-        checkState(app, ProductConstants.PRODUCT_AGED_BRIE, 2, 0);
+        checkState(app, AgedBrieItem.NAME, 2, 0);
 
         // days countdown
-        advanceDay(app, ProductConstants.PRODUCT_AGED_BRIE, 1, 1);
-        advanceDay(app, ProductConstants.PRODUCT_AGED_BRIE, 0, 2);
-        advanceDay(app, ProductConstants.PRODUCT_AGED_BRIE, -1, 4);
-        advanceDay(app, ProductConstants.PRODUCT_AGED_BRIE, -2, 6);
+        advanceDay(app, AgedBrieItem.NAME, 1, 1);
+        advanceDay(app, AgedBrieItem.NAME, 0, 2);
+        advanceDay(app, AgedBrieItem.NAME, -1, 4);
+        advanceDay(app, AgedBrieItem.NAME, -2, 6);
     }
 
     @Test
     void backStagePasses() {
-        Item agedBrie = new Item(ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 15, 20);
-        GildedRoseNew app = new GildedRoseNew(List.of(agedBrie), productServiceFactory, productTypeService);
+        Item backstageItem = new BackstageItem(15, 20);
+        GildedRoseNew app = new GildedRoseNew(List.of(backstageItem));
 
         // Initial state
-        checkState(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 15, 20);
+        checkState(app, BackstageItem.NAME, 15, 20);
 
         // days countdown
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 14, 21);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 13, 22);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 12, 23);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 11, 24);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 10, 25);
+        advanceDay(app, BackstageItem.NAME, 14, 21);
+        advanceDay(app, BackstageItem.NAME, 13, 22);
+        advanceDay(app, BackstageItem.NAME, 12, 23);
+        advanceDay(app, BackstageItem.NAME, 11, 24);
+        advanceDay(app, BackstageItem.NAME, 10, 25);
 
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 9, 27);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 8, 29);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 7, 31);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 6, 33);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 5, 35);
+        advanceDay(app, BackstageItem.NAME, 9, 27);
+        advanceDay(app, BackstageItem.NAME, 8, 29);
+        advanceDay(app, BackstageItem.NAME, 7, 31);
+        advanceDay(app, BackstageItem.NAME, 6, 33);
+        advanceDay(app, BackstageItem.NAME, 5, 35);
 
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 4, 38);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 3, 41);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 2, 44);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 1, 47);
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, 0, 50);
+        advanceDay(app, BackstageItem.NAME, 4, 38);
+        advanceDay(app, BackstageItem.NAME, 3, 41);
+        advanceDay(app, BackstageItem.NAME, 2, 44);
+        advanceDay(app, BackstageItem.NAME, 1, 47);
+        advanceDay(app, BackstageItem.NAME, 0, 50);
 
-        advanceDay(app, ProductConstants.PRODUCT_BACKSTAGE_PASSES_TO_CONCERT, -1, 0);
+        advanceDay(app, BackstageItem.NAME, -1, 0);
     }
 
     @Test
     void conjuredItem() {
-        Item conjuredManaCake = new Item(ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 2, 10);
-        GildedRoseNew app = new GildedRoseNew(List.of(conjuredManaCake), productServiceFactory, productTypeService);
+        Item conjuredManaCake = new ConjuredItem(2, 10);
+        GildedRoseNew app = new GildedRoseNew(List.of(conjuredManaCake));
 
         // Initial state
-        checkState(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 2, 10);
+        checkState(app, ConjuredItem.NAME, 2, 10);
 
         // days countdown
-        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 1, 8);
-        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, 0, 6);
-        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, -1, 2);
-        advanceDay(app, ProductConstants.PRODUCT_CONJURED_MANA_CAKE, -2, 0);
+        advanceDay(app, ConjuredItem.NAME, 1, 8);
+        advanceDay(app, ConjuredItem.NAME, 0, 6);
+        advanceDay(app, ConjuredItem.NAME, -1, 2);
+        advanceDay(app, ConjuredItem.NAME, -2, 0);
     }
 
     private void checkState(GildedRoseNew app, String name, int expectedSellIn, int expectedQuality) {

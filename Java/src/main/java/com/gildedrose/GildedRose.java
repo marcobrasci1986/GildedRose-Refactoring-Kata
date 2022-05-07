@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.model.Item;
+
 /**
  * I left this class here just for reference. See {@link GildedRoseNew} for the solution.
  */
